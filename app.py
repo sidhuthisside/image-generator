@@ -16,12 +16,14 @@ PROJECT_ID = os.environ.get("PROJECT_ID")
 LOCATION = os.environ.get("LOCATION")
 CREDENTIALS_PATH = "key.json"
 
-# ===== INIT =====
+# ===== INIT GOOGLE GENAI ONCE =====
+genai.configure(api_key=GEMINI_API_KEY)
+
+# ===== FUNCTIONS =====
+
 def initialize_gemini():
     try:
-        genai.configure(api_key=GEMINI_API_KEY)
         model = genai.GenerativeModel('gemini-1.5-flash')
-        response = model.generate_content("Hello")
         return model
     except Exception as e:
         print(f"Gemini init error: {e}")
@@ -41,7 +43,8 @@ def enhance_prompt(gemini_model, original_prompt):
             )
         )
         return response.text.strip().strip('"')
-    except:
+    except Exception as e:
+        print(f"Prompt enhancement error: {e}")
         return f"{original_prompt}, ultra HD, 8K resolution, professional photography"
 
 def generate_image(prompt, use_enhanced=False):
@@ -72,6 +75,8 @@ def generate_image(prompt, use_enhanced=False):
     else:
         return None
 
+# ===== ROUTES =====
+
 @app.route('/generate', methods=['POST'])
 def generate():
     data = request.json
@@ -91,5 +96,6 @@ def generate():
 def index():
     return "✅ Flask API is running"
 
+# ===== RUN =====
 if __name__ == '__main__':
     app.run(debug=True)

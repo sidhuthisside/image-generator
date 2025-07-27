@@ -1,5 +1,7 @@
-Flask
-google-cloud-aiplatform
-google-generativeai
-google-auth
-Pillow
+Flask==2.3.3
+Flask-Cors==4.0.0
+google-cloud-aiplatform==1.43.0
+google-auth==2.27.0
+google-generativeai==1.1.0
+protobuf==4.25.3
+tenacity==8.2.3

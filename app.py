@@ -14,7 +14,7 @@ app = Flask(__name__)
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 PROJECT_ID = os.environ.get("PROJECT_ID")
 LOCATION = os.environ.get("LOCATION")
-CREDENTIALS_PATH = "key.json"
+CREDENTIALS_PATH = "/var/secrets/key.json"
 
 # ===== INIT GOOGLE GENAI ONCE =====
 genai.configure(api_key=GEMINI_API_KEY)

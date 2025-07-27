@@ -1,0 +1,5 @@
+Flask
+google-cloud-aiplatform
+google-generativeai
+google-auth
+Pillow
